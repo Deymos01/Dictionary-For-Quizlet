@@ -63,16 +63,6 @@ def parse(URL, HEADERS, word):
 
 
 def main(dictionary=None):
-    # Check the user word for misprint
-    # if dictionary == None:
-    #     while True:
-    #         word = input("Input a term: ")
-    #         if any(x in string.digits + string.punctuation for x in list(word)):
-    #             print("Your word contains digits or special symbols. Remove it.")
-    #         else:
-    #             word = word.lower().replace(" ", "-")
-    #             break
-    #     dictionary = [word]
     description = []
     counter = 0
     for elem in dictionary:
