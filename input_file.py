@@ -1,15 +1,14 @@
 def input_data(filename):
+    """
+    Reads an input file and extracts data from it.
+    :param filename: a directory where the input file is located.
+    :return data: a list of words from file.
+    """
     with open(filename, "r") as file:
         data = []
-        ff = file.readlines()
-        ff = [x.strip() for x in ff]
-        if all(x[0] == x[-1] == '"' for x in ff):
-            for chain in ff:
-                line = chain.split(";")
-                data.append(line[0][1:-1])
-        else:
-            for chain in ff:
-                data.append(chain)
+        for word in file.readlines():
+            # Adding a word to a list from both a classic list file and a ReWord-style file
+            data.append(word.strip().replace('"', '').split(";")[0])
     return data
 
 
