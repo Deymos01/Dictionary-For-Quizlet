@@ -26,6 +26,8 @@ class Application(tk.Frame):
         self.lb2.grid(row=3, column=1, columnspan=3)
 
     def OpenFile(self):
+        """Opens a file that user chose"""
+        self.ChangeText("")
         ftypes = [('txt files', '*.txt'), ('All files', '*')]
         dlg = filedialog.Open(self, filetypes=ftypes)
         fl = dlg.show()
@@ -36,15 +38,18 @@ class Application(tk.Frame):
             errors = ps.main(dictionary)
 
             if errors == 0:
+                self.ChangeText("")
                 self.ChangeText("Success!\n"
                                 "Use this symbol - @ to split words by cards in Quizlet.")
             else:
+                self.ChangeText("")
                 self.ChangeText(f"File has been proccessed.\n"
                                 f"Unfortunately, {errors} words weren't found.\n"
                                 f"Use this symbol - @ to split words by cards in Quizlet.")
 
 
     def ChangeText(self, text):
+        """Changes a text in TextBar"""
         self.finalText.config(state=tk.NORMAL)
         self.finalText.delete(0.0, tk.END)
         self.finalText.insert(0.0, text)
@@ -64,7 +69,6 @@ def main():
     root.resizable(False, False)
 
     root.mainloop()
-
 
 if __name__ == "__main__":
     main()
