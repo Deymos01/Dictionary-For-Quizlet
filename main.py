@@ -33,8 +33,7 @@ class Application(tk.Frame):
         fl = dlg.show()
 
         if fl != '':
-            dictionary = input_data(fl)
-            errors = ps.main(dictionary)
+            errors = ps.main(input_data(fl))
 
             if errors == 0:
                 self.ChangeText("")
