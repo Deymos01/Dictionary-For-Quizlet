@@ -33,7 +33,6 @@ class Application(tk.Frame):
         fl = dlg.show()
 
         if fl != '':
-            self.ChangeText("File affirmed!")
             dictionary = input_data(fl)
             errors = ps.main(dictionary)
 
