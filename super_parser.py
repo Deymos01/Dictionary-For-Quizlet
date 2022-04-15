@@ -13,7 +13,7 @@ def createTxtFile(data):
     with open('dictionary.txt', 'w') as file:
         for elem in data:
             # formating data for Quizlet's cards
-            line = elem[0]['word'] + '\t' + elem[0]['definition'] + '\n\nE.g.\n'
+            line = elem[0]['word'] + '\t' + elem[0]['definition'] + '.\n\nE.g.\n'
             for example in elem[0]['examples without word']:
                 line += example + '\n'
             line = line[:-1] + '@'
