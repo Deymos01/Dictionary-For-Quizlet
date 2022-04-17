@@ -4,7 +4,7 @@ def input_data(filename):
     :param filename: a directory where the input file is located.
     :return data: a list of words from file.
     """
-    with open(filename, "r") as file:
+    with open(filename, "r", encoding="utf-8") as file:
         data = []
         for word in file.readlines():
             # Adding a word to a list from both a classic list file and a ReWord-style file
