@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+import time
 
-QUANTITY_OF_EXAMPLES = 2 # There will always be at least one example
+QUANTITY_OF_EXAMPLES = 2  # There will always be at least one example
 
 
 def createTxtFile(data):
@@ -26,7 +27,6 @@ def get_html(url, HEADERS, params=None):
 
 
 def get_content(html, word):
-    """Gets content from html page"""
     soup = BeautifulSoup(html, 'html.parser')
     items = soup.find('div', class_='page')
 
@@ -53,7 +53,7 @@ def get_content(html, word):
         'word': word,
         'definition': items.find('div', class_='def ddef_d db').get_text(),
         'examples': examples,
-        'examples without word': [x.lower().replace(word, '_' * len(word)) for x in examples]
+        'examples without word': [x.lower().replace(word, "_" * len(word)).capitalize() for x in examples]
     })
 
     if description[0]['definition'][-2:] == ": ":
@@ -72,10 +72,10 @@ def parse(URL, HEADERS, key_word):
 
 
 def main(dictionary=None):
+    start_time = time.time()
     description = []  # Empty list for parsed data
     counter_errors = 0
     for elem in dictionary:
-        elem = elem.lower()
         URL = "https://dictionary.cambridge.org/us/dictionary/english/" + elem
         HEADERS = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
                    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'}
@@ -88,6 +88,7 @@ def main(dictionary=None):
     if description:
         createTxtFile(description)
 
+    print(f"Finished: {time.time() - start_time} seconds.")
     return counter_errors
 
 
